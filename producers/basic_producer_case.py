@@ -1,5 +1,5 @@
-# basic_generator_case.py
-# Generate some streaming buzz messages. 
+# basic_producer_case.py
+# Generate some streaming buzz messages.
 
 #####################################
 # Import Modules
@@ -14,7 +14,7 @@ import time
 from dotenv import load_dotenv
 
 # Import functions from local modules
-from utils.utils_logger import logger
+from utils.utils_logger import logger  # Import the logger correctly
 
 #####################################
 # Load Environment Variables
@@ -34,7 +34,7 @@ def get_message_interval() -> int:
     """
     return_value: str = os.getenv("MESSAGE_INTERVAL_SECONDS", 3)
     interval: int = int(return_value)
-    logger.info(f"Messages will be sent every {interval} seconds.")
+    logger.info(f"Messages will be sent every {interval} seconds.")  # Log the interval
     return interval
 
 
@@ -51,7 +51,6 @@ TOPICS: list = ["a movie", "a meme", "an app", "a trick", "a story"]
 # Define a function to generate buzz messages
 #####################################
 
-
 def generate_messages():
     """
     Generate a stream of buzz messages.
@@ -67,24 +66,22 @@ def generate_messages():
 # Define main() function to run this producer.
 #####################################
 
-
 def main() -> None:
     """
     Main entry point for this producer.
     """
-    logger.info("START producer...")
+    logger.info("START producer...")  # Log start of the producer
     logger.info("Hit CTRL c (or CMD c) to close.")
     
     # Call the function we defined above to get the message interval
     interval_secs: int = get_message_interval()
 
     for message in generate_messages():
-        logger.info(message)
-        # Use the time module to pause execution for a specified number of seconds
+        logger.info(message)  # Log each generated message
         time.sleep(interval_secs)
 
     logger.info("NOTE: See the `logs` folder to learn more.")
-    logger.info("END producer.....")
+    logger.info("END producer.....")  # Log end of the producer
 
 
 #####################################

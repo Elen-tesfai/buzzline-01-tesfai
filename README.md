@@ -24,3 +24,8 @@ This project introduces streaming data. The Python language includes generators 
 6. **Install necessary VS Code extensions**:
    - **Python by Microsoft**: For Python language support.
    - **GitLens**: For enhanced Git integration and version control features.
+
+## Task 2: Clone the Repository
+Clone the repository using the following command:
+```bash
+git clone https://github.com/denisecase/buzzline-01-case.git
