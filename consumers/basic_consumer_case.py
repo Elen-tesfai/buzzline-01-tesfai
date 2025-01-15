@@ -1,7 +1,7 @@
 """
 basic_consumer_case.py
 
-Read a log file as it is being written. 
+Read a log file as it is being written.
 """
 
 #####################################
@@ -17,7 +17,7 @@ from utils.utils_logger import logger, get_log_file_path
 
 #####################################
 # Define a function to process a single message
-# #####################################
+#####################################
 
 
 def process_message(log_file) -> None:
@@ -38,22 +38,23 @@ def process_message(log_file) -> None:
             # Read the next line of the file
             line = file.readline()
 
+            # Debugging: Output the raw line read
+            if line:
+                print(f"DEBUG: Raw line read: {line.strip()}")
+
             # If the line is empty, wait for a new log entry
             if not line:
-                # Wait a second for a new log entry
-                delay_seconds = 1
-                time.sleep(delay_seconds)
-                # Keep checking for new log entries
+                print("DEBUG: No new line found, waiting...")
+                time.sleep(1)  # Delay to simulate waiting for a new log entry
                 continue
 
             # We got a new log entry!
-            # Remove any leading/trailing white space and log the message
             message = line.strip()
             print(f"Consumed log message: {message}")
 
-            # monitor and alert on special conditions
+            # Monitor and alert on special conditions
             if "I just loved a movie! It was funny." in message:
-                print(f"ALERT: The special message was found! \n{message}")
+                print(f"ALERT: The special message was found! {message}")
                 logger.warning(f"ALERT: The special message was found! \n{message}")
 
 
@@ -92,3 +93,4 @@ def main() -> None:
 # If this file is the one being executed, call the main() function
 if __name__ == "__main__":
     main()
+    
